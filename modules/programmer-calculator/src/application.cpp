@@ -71,7 +71,7 @@ std::string Application::operator()(int argc, const char** argv) {
     try {
         args.first_number  = argv[1];
         args.second_number = argv[2];
-        args.type          = char(argv[3]);        
+        args.type          = argv[3];        
         args.operation     = parseOperation(argv[4]);
     }
     catch(std::string& str) {

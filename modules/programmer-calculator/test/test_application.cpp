@@ -47,7 +47,7 @@ TEST_F(ApplicationTest, Do_Print_Help) {
     Assert("This is a hex, oct, bin number calculator application.");
 }
 
-TEST_F(LengthConverterAppTest, Is_Checking_Number_Of_Arguments) {
+TEST_F(ApplicationTest, Is_Checking_Number_Of_Arguments) {
     vector<string> args = { "101", "110", "3" };
 
     Act(args);
