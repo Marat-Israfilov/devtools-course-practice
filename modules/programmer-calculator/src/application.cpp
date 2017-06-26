@@ -60,8 +60,7 @@ char parseType(const char* arg) {
         op = '2';
     } else if (strcmp(arg, "3") == 0) {
         op = '3';
-    }
-    else {
+    } else {
         throw std::string("Wrong operation format!");
     }
     return op;
