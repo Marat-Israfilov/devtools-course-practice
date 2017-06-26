@@ -124,9 +124,10 @@ std::string Application::operator()(int argc, const char** argv) {
         tmp_result = tmp_num1 * tmp_num2;
         break;
      case '/':
-        if (tmp_num2 == 0) 
+        if (tmp_num2 == 0) {
             return "Can't divide by zero!";
-        tmp_result = tmp_num1 / tmp_num2;
+        } else
+            tmp_result = tmp_num1 / tmp_num2;
         break;
     }
 
