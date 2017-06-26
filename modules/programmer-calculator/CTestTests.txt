@@ -55,7 +55,7 @@ add_test(
     NAME ${prefix}_can_Add
     COMMAND ${APPLICATION} 12 AB 1 +
 )
-set_tests_properties (${prefix}_can_Add_Complexs PROPERTIES
+set_tests_properties (${prefix}_can_Add PROPERTIES
     PASS_REGULAR_EXPRESSION "Result = BD"
     LABELS "${MODULE}")
 
@@ -63,7 +63,7 @@ add_test(
     NAME ${prefix}_can_Diff
     COMMAND ${APPLICATION} 14 5 2 -
 )
-set_tests_properties (${prefix}_can_Add_Complexs PROPERTIES
+set_tests_properties (${prefix}_can_Diff PROPERTIES
     PASS_REGULAR_EXPRESSION "Result = 7"
     LABELS "${MODULE}")
 
@@ -71,7 +71,7 @@ add_test(
     NAME ${prefix}_can_Mult
     COMMAND ${APPLICATION} 110 11 3 *
 )
-set_tests_properties (${prefix}_can_Add_Complexs PROPERTIES
+set_tests_properties (${prefix}_can_Mult PROPERTIES
     PASS_REGULAR_EXPRESSION "Result = 10010"
     LABELS "${MODULE}")
 
@@ -79,7 +79,7 @@ add_test(
     NAME ${prefix}_can_Divide
     COMMAND ${APPLICATION} 10010 11 3 /
 )
-set_tests_properties (${prefix}_can_Add_Complexs PROPERTIES
+set_tests_properties (${prefix}_can_Divide PROPERTIES
     PASS_REGULAR_EXPRESSION "Result = 110"
     LABELS "${MODULE}")
 
