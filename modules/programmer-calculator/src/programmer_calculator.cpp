@@ -189,6 +189,9 @@ std::string ProgrammerCalculator::CutUnnecessaryZeroes(const std::string &bin) {
     int length_of_bin = bin_copy.length();
     int position_of_the_first_one = bin_copy.find("1");
 
+    if (position_of_the_first_one == -1)
+        return "0";
+
     if (position_of_the_first_one < length_of_bin) {
         bin_copy = bin_copy.substr(position_of_the_first_one, length_of_bin);
     }

@@ -63,7 +63,7 @@ char parseType(const char* arg) {
     } else if (strcmp(arg, "3") == 0) {
         op = '3';
     } else {
-        throw std::string("Wrong operation format!");
+        throw std::string("Wrong type!");
     }
     return op;
 }
@@ -90,9 +90,6 @@ std::string Application::operator()(int argc, const char** argv) {
     int tmp_result;
     std::ostringstream stream;
 
-    if(args.type < '1' || args.type > '3')
-        return "Wrong type!";
-	
     switch (args.type) {
     case '1':
         tmp_num1 = converter.ConvertHexToDec(argv[1]);
@@ -127,7 +124,7 @@ std::string Application::operator()(int argc, const char** argv) {
      case '*':
         tmp_result = tmp_num1 * tmp_num2;
         break;
-     case '/':        
+     case '/':
         tmp_result = tmp_num1 / tmp_num2;
         break;
     }
