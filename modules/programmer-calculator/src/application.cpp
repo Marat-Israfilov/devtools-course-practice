@@ -16,13 +16,15 @@ void Application::help(const char* appname, const char* message) {
     message_ =
         std::string(message) +
           "This is a HEX, OCT, BIN number calculator application.\n\n" +
-          "Please provide arguments in the following format:\n\n"+
+          "Please provide arguments in the following format:\n\n" +
 
           "  $ " + appname + " <first_number> <second_number> " +
           "<type> <operation>\n\n" +
 
           "<operation> is one of '+', '-', '*', '/'\n\n" +
-          "<type> is one of '1'-HEX, '2'-OCT, '3'-BIN ";
+          "<type> is one of '1'-HEX, '2'-OCT, '3'-BIN.\n\n" +
+          "Number's types should be equal " +
+          "and numbers should be greater than zero.\n\n";
 }
 
 bool Application::validateNumberOfArguments(int argc, const char** argv) {
@@ -89,19 +91,25 @@ std::string Application::operator()(int argc, const char** argv) {
     std::ostringstream stream;
 
     switch (args.type) {
-     case '1':
+    case '1':
         tmp_num1 = converter.ConvertHexToDec(argv[1]);
         tmp_num2 = converter.ConvertHexToDec(argv[2]);
+        if (tmp_num1 == -1 || tmp_num2 == -1)
+            return "Numbers don't match the type!";
         break;
-     case '2':
+    case '2':
         tmp_num1 = converter.ConvertOctToDec(argv[1]);
         tmp_num2 = converter.ConvertOctToDec(argv[2]);
+        if (tmp_num1 == -1 || tmp_num2 == -1)
+            return "Numbers don't match the type!";
         break;
-     case '3':
+    case '3':
         tmp_num1 = converter.ConvertBinToDec(argv[1]);
         tmp_num2 = converter.ConvertBinToDec(argv[2]);
+        if (tmp_num1 == -1 || tmp_num2 == -1)
+            return "Numbers don't match the type!";
         break;
-     default:
+    default:
         return "Wrong type!";
     }
 
@@ -116,24 +124,21 @@ std::string Application::operator()(int argc, const char** argv) {
         tmp_result = tmp_num1 * tmp_num2;
         break;
      case '/':
-        try {
-            tmp_result = tmp_num1 / tmp_num2;
-            break;
-        }
-        catch(std::string& str) {
-            return str;
-        }
+        if (tmp_num2 == 0) 
+            return "Can't divide by zero!";
+        tmp_result = tmp_num1 / tmp_num2;
+        break;
     }
 
     switch (args.type) {
      case '1':
-        stream << converter.ConvertDecToHex(tmp_result);
+        stream << "Result = " << converter.ConvertDecToHex(tmp_result);
         break;
      case '2':
-        stream << converter.ConvertDecToOct(tmp_result);
+        stream << "Result = " << converter.ConvertDecToOct(tmp_result);
         break;
      case '3':
-        stream << converter.ConvertDecToBin(tmp_result);
+        stream << "Result = " << converter.ConvertDecToBin(tmp_result);
         break;
      default:
         return "Wrong type!";
