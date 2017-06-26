@@ -35,17 +35,6 @@ bool Application::validateNumberOfArguments(int argc, const char** argv) {
     return true;
 }
 
-/*double parseDouble(const char* arg) {
-    char* end;
-    double value = strtod(arg, &end);
-
-    if (end[0]) {
-        throw std::string("Wrong number format!");
-    }
-
-    return value;
-}*/
-
 char parseOperation(const char* arg) {
     char op;
     if (strcmp(arg, "+") == 0) {
@@ -62,6 +51,20 @@ char parseOperation(const char* arg) {
     return op;
 }
 
+char parseType(const char* arg) {
+    char op;
+    if (strcmp(arg, "1") == 0) {
+        op = '1';
+    } else if (strcmp(arg, "2") == 0) {
+        op = '2';
+    } else if (strcmp(arg, "3") == 0) {
+        op = '3';
+    else {
+        throw std::string("Wrong operation format!");
+    }
+    return op;
+}
+
 std::string Application::operator()(int argc, const char** argv) {
     Arguments args;
 
@@ -71,7 +74,7 @@ std::string Application::operator()(int argc, const char** argv) {
     try {
         args.first_number  = argv[1];
         args.second_number = argv[2];
-        args.type          = argv[3];        
+        args.type          = parseType(argv[3]);        
         args.operation     = parseOperation(argv[4]);
     }
     catch(std::string& str) {
@@ -80,27 +83,27 @@ std::string Application::operator()(int argc, const char** argv) {
 
     ProgrammerCalculator converter; 
     int tmp_num1;
-	int tmp_num2;
+    int tmp_num2;
     int tmp_result;    
     std::ostringstream stream;
-	
-	switch (args.type) {
+    
+    switch (args.type) {
      case '1':
         tmp_num1 = converter.ConvertHexToDec(argv[1]);
-		tmp_num2 = converter.ConvertHexToDec(argv[2]);
+        tmp_num2 = converter.ConvertHexToDec(argv[2]);
         break;
      case '2':
         tmp_num1 = converter.ConvertOctToDec(argv[1]);
-		tmp_num2 = converter.ConvertOctToDec(argv[2]);
+        tmp_num2 = converter.ConvertOctToDec(argv[2]);
         break;
      case '3':
         tmp_num1 = converter.ConvertBinToDec(argv[1]);
-		tmp_num2 = converter.ConvertBinToDec(argv[2]);
+        tmp_num2 = converter.ConvertBinToDec(argv[2]);
         break;
      default:
         return "Wrong type!";
     }
-	
+    
     switch (args.operation) {
      case '+':
         tmp_result = tmp_num1 + tmp_num2;        
@@ -120,8 +123,8 @@ std::string Application::operator()(int argc, const char** argv) {
             return str;
         }
     }
-	
-	switch (args.type) {
+    
+    switch (args.type) {
      case '1':
         stream << converter.ConvertDecToHex(tmp_result);
         break;

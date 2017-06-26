@@ -52,5 +52,5 @@ TEST_F(ApplicationTest, Is_Checking_Number_Of_Arguments) {
 
     Act(args);
 
-    Assert("ERROR: Should be 4 arguments.*");
+    Assert("ERROR: Should be 4 arguments.\n\n");
 }
