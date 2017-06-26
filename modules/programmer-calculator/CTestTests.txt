@@ -45,7 +45,7 @@ set_tests_properties (${prefix}_can_Detect_Wrong_Operation_Format PROPERTIES
 
 add_test(
     NAME ${prefix}_can_Detect_Wrong_Type_Format
-    COMMAND ${APPLICATION} 3 5 3 +
+    COMMAND ${APPLICATION} 3 5 4 +
 )
 set_tests_properties (${prefix}_can_Detect_Wrong_Type_Format PROPERTIES
     PASS_REGULAR_EXPRESSION "Wrong type!"
