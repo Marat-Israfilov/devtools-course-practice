@@ -1,8 +1,5 @@
 // Copyright 2017 Israfilov Marat
 
-#include "include/application.h"
-#include "include/programmer_calculator.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
@@ -10,15 +7,19 @@
 #include <string>
 #include <sstream>
 
+#include "include/application.h"
+#include "include/programmer_calculator.h"
+
 Application::Application() : message_("") {}
 
 void Application::help(const char* appname, const char* message) {
     message_ =
         std::string(message) +
-          "This is a hex, oct, bin number calculator application.\n\n" +
+          "This is a HEX, OCT, BIN number calculator application.\n\n" +
           "Please provide arguments in the following format:\n\n"+
 
-          "  $ " + appname + " <first_number> <second_number> <type> <operation>\n\n" +    
+          "  $ " + appname + " <first_number> <second_number> " +
+          "<type> <operation>\n\n" +
 
           "<operation> is one of '+', '-', '*', '/'\n\n" +
           "<type> is one of '1'-HEX, '2'-OCT, '3'-BIN ";
@@ -59,6 +60,7 @@ char parseType(const char* arg) {
         op = '2';
     } else if (strcmp(arg, "3") == 0) {
         op = '3';
+    }
     else {
         throw std::string("Wrong operation format!");
     }
@@ -74,19 +76,19 @@ std::string Application::operator()(int argc, const char** argv) {
     try {
         args.first_number  = argv[1];
         args.second_number = argv[2];
-        args.type          = parseType(argv[3]);        
+        args.type          = parseType(argv[3]);
         args.operation     = parseOperation(argv[4]);
     }
     catch(std::string& str) {
         return str;
     }
 
-    ProgrammerCalculator converter; 
+    ProgrammerCalculator converter;
     int tmp_num1;
     int tmp_num2;
-    int tmp_result;    
+    int tmp_result;
     std::ostringstream stream;
-    
+
     switch (args.type) {
      case '1':
         tmp_num1 = converter.ConvertHexToDec(argv[1]);
@@ -103,10 +105,10 @@ std::string Application::operator()(int argc, const char** argv) {
      default:
         return "Wrong type!";
     }
-    
+
     switch (args.operation) {
      case '+':
-        tmp_result = tmp_num1 + tmp_num2;        
+        tmp_result = tmp_num1 + tmp_num2;
         break;
      case '-':
         tmp_result = tmp_num1 - tmp_num2;
@@ -123,7 +125,7 @@ std::string Application::operator()(int argc, const char** argv) {
             return str;
         }
     }
-    
+
     switch (args.type) {
      case '1':
         stream << converter.ConvertDecToHex(tmp_result);

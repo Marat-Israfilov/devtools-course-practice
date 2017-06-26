@@ -16,5 +16,5 @@ add_test(
     COMMAND ${APPLICATION}
 )
 set_tests_properties (${prefix}_can_Print_Help_Without_Arguments PROPERTIES
-    PASS_REGULAR_EXPRESSION "This is a HEX, OCT, BIN number calculator"
+    PASS_REGULAR_EXPRESSION "This is a HEX, OCT, BIN number calculator application"
 LABELS "${MODULE}")

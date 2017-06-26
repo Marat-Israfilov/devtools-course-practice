@@ -44,7 +44,7 @@ TEST_F(ApplicationTest, Do_Print_Help) {
 
     Act(args);
 
-    Assert("This is a hex, oct, bin number calculator application.");
+    Assert("This is a HEX, OCT, BIN number calculator application.");
 }
 
 TEST_F(ApplicationTest, Is_Checking_Number_Of_Arguments) {
