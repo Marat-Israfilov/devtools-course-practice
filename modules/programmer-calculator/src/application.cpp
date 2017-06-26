@@ -90,6 +90,9 @@ std::string Application::operator()(int argc, const char** argv) {
     int tmp_result;
     std::ostringstream stream;
 
+    if(args.type < '1' || args.type > '3')
+        return "Wrong type!";
+	
     switch (args.type) {
     case '1':
         tmp_num1 = converter.ConvertHexToDec(argv[1]);
@@ -109,9 +112,10 @@ std::string Application::operator()(int argc, const char** argv) {
         if (tmp_num1 == -1 || tmp_num2 == -1)
             return "Numbers don't match the type!";
         break;
-    default:
-        return "Wrong type!";
     }
+
+    if (tmp_num2 == 0)
+        return "Can't divide by zero!";
 
     switch (args.operation) {
      case '+':
@@ -123,11 +127,8 @@ std::string Application::operator()(int argc, const char** argv) {
      case '*':
         tmp_result = tmp_num1 * tmp_num2;
         break;
-     case '/':
-        if (tmp_num2 == 0) {
-            return "Can't divide by zero!";
-        } else
-            tmp_result = tmp_num1 / tmp_num2;
+     case '/':        
+        tmp_result = tmp_num1 / tmp_num2;
         break;
     }
 
