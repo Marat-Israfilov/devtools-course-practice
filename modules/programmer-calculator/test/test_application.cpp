@@ -71,7 +71,23 @@ TEST_F(ApplicationTest, Can_Detect_Wrong_Operation_Format) {
     Assert("Wrong operation format!");
 }
 
-TEST_F(ApplicationTest, Can_Detect_Wrong_Number_Format) {
+TEST_F(ApplicationTest, Can_Detect_Wrong_Number_Format_Hex) {
+    vector<string> args = {"1", "2y", "1", "+"};
+
+    Act(args);
+
+    Assert("Numbers don't match the type!");
+}
+
+TEST_F(ApplicationTest, Can_Detect_Wrong_Number_Format_Oct) {
+    vector<string> args = {"1", "2a", "2", "+"};
+
+    Act(args);
+
+    Assert("Numbers don't match the type!");
+}
+
+TEST_F(ApplicationTest, Can_Detect_Wrong_Number_Format_Bin) {
     vector<string> args = {"1", "2", "3", "+"};
 
     Act(args);
@@ -80,7 +96,7 @@ TEST_F(ApplicationTest, Can_Detect_Wrong_Number_Format) {
 }
 
 TEST_F(ApplicationTest, Can_Add) {
-    vector<string> args = {"1F", "3", "1", "+"};
+    vector<string> args = {"1f", "3", "1", "+"};
 
     Act(args);
 

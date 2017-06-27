@@ -28,8 +28,24 @@ set_tests_properties (${prefix}_can_Check_Number_Of_Arguments PROPERTIES
 LABELS "${MODULE}")
 
 add_test(
-    NAME ${prefix}_can_Detect_Wrong_Number_Format
+    NAME ${prefix}_can_Detect_Wrong_Number_Format_Bin
     COMMAND ${APPLICATION} 1 2 3 +
+)
+set_tests_properties (${prefix}_can_Detect_Wrong_Number_Format PROPERTIES
+    PASS_REGULAR_EXPRESSION "Numbers don't match the type!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Detect_Wrong_Number_Format_Oct
+    COMMAND ${APPLICATION} a 2 2 +
+)
+set_tests_properties (${prefix}_can_Detect_Wrong_Number_Format PROPERTIES
+    PASS_REGULAR_EXPRESSION "Numbers don't match the type!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Detect_Wrong_Number_Format_Hex
+    COMMAND ${APPLICATION} z 2 1 +
 )
 set_tests_properties (${prefix}_can_Detect_Wrong_Number_Format PROPERTIES
     PASS_REGULAR_EXPRESSION "Numbers don't match the type!"
