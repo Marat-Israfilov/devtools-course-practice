@@ -139,8 +139,6 @@ std::string Application::operator()(int argc, const char** argv) {
      case '3':
         stream << "Result = " << converter.ConvertDecToBin(tmp_result);
         break;
-     default:
-        return "Wrong type!";
     }
 
     message_ = stream.str();
