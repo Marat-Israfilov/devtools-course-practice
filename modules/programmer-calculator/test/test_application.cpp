@@ -72,7 +72,7 @@ TEST_F(ApplicationTest, Can_Detect_Wrong_Operation_Format) {
 }
 
 TEST_F(ApplicationTest, Can_Detect_Wrong_Number_Format_Hex) {
-    vector<string> args = {"1", "2y", "1", "+"};
+    vector<string> args = {"j", "2y", "1", "+"};
 
     Act(args);
 
