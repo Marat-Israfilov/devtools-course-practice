@@ -71,23 +71,7 @@ TEST_F(ApplicationTest, Can_Detect_Wrong_Operation_Format) {
     Assert("Wrong operation format!");
 }
 
-TEST_F(ApplicationTest, Can_Detect_Wrong_Number_Format_Hex) {
-    vector<string> args = {"1", "2y", "1", "+"};
-
-    Act(args);
-
-    Assert("Numbers don't match the type!");
-}
-
-TEST_F(ApplicationTest, Can_Detect_Wrong_Number_Format_Oct) {
-    vector<string> args = {"1", "2a", "2", "+"};
-
-    Act(args);
-
-    Assert("Numbers don't match the type!");
-}
-
-TEST_F(ApplicationTest, Can_Detect_Wrong_Number_Format_Bin) {
+TEST_F(ApplicationTest, Can_Detect_Wrong_Number_Format) {
     vector<string> args = {"1", "2", "3", "+"};
 
     Act(args);

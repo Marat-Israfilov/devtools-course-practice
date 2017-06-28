@@ -94,22 +94,19 @@ std::string Application::operator()(int argc, const char** argv) {
     case '1':
         tmp_num1 = converter.ConvertHexToDec(argv[1]);
         tmp_num2 = converter.ConvertHexToDec(argv[2]);
-        if (tmp_num1 == -1 || tmp_num2 == -1)
-            return "Numbers don't match the type!";
         break;
     case '2':
         tmp_num1 = converter.ConvertOctToDec(argv[1]);
         tmp_num2 = converter.ConvertOctToDec(argv[2]);
-        if (tmp_num1 == -1 || tmp_num2 == -1)
-            return "Numbers don't match the type!";
         break;
     case '3':
         tmp_num1 = converter.ConvertBinToDec(argv[1]);
         tmp_num2 = converter.ConvertBinToDec(argv[2]);
-        if (tmp_num1 == -1 || tmp_num2 == -1)
-            return "Numbers don't match the type!";
         break;
     }
+
+    if (tmp_num1 == -1 || tmp_num2 == -1)
+        return "Numbers don't match the type!";
 
     if (tmp_num2 == 0)
         return "Can't divide by zero!";
